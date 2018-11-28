@@ -1,0 +1,728 @@
+# source: https://eu1.prisma.sh/nicolas-barray/bmk2-prisma/dev
+# timestamp: Wed Nov 28 2018 01:11:50 GMT+0100 (CET)
+
+type AggregateBookmark {
+  count: Int!
+}
+
+type AggregateLink {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+type Bookmark implements Node {
+  id: ID!
+  link: Link
+}
+
+"""A connection to a list of items."""
+type BookmarkConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [BookmarkEdge]!
+  aggregate: AggregateBookmark!
+}
+
+input BookmarkCreateInput {
+  link: LinkCreateOneWithoutBkmkInput
+}
+
+input BookmarkCreateOneWithoutLinkInput {
+  connect: BookmarkWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type BookmarkEdge {
+  """The item at the end of the edge."""
+  node: Bookmark!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum BookmarkOrderByInput {
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type BookmarkPreviousValues {
+  id: ID!
+}
+
+type BookmarkSubscriptionPayload {
+  mutation: MutationType!
+  node: Bookmark
+  updatedFields: [String!]
+  previousValues: BookmarkPreviousValues
+}
+
+input BookmarkSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [BookmarkSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [BookmarkSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [BookmarkSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: BookmarkWhereInput
+}
+
+input BookmarkUpdateInput {
+  link: LinkUpdateOneWithoutBkmkInput
+}
+
+input BookmarkUpdateOneRequiredWithoutLinkInput {
+  connect: BookmarkWhereUniqueInput
+}
+
+input BookmarkWhereInput {
+  """Logical AND on all given filters."""
+  AND: [BookmarkWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [BookmarkWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [BookmarkWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  link: LinkWhereInput
+}
+
+input BookmarkWhereUniqueInput {
+  id: ID
+}
+
+type Link implements Node {
+  id: ID!
+  bkmk: Bookmark!
+  link: String!
+  name: String
+  score: Int!
+}
+
+"""A connection to a list of items."""
+type LinkConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [LinkEdge]!
+  aggregate: AggregateLink!
+}
+
+input LinkCreateInput {
+  link: String!
+  name: String
+  score: Int
+  bkmk: BookmarkCreateOneWithoutLinkInput!
+}
+
+input LinkCreateOneWithoutBkmkInput {
+  create: LinkCreateWithoutBkmkInput
+  connect: LinkWhereUniqueInput
+}
+
+input LinkCreateWithoutBkmkInput {
+  link: String!
+  name: String
+  score: Int
+}
+
+"""An edge in a connection."""
+type LinkEdge {
+  """The item at the end of the edge."""
+  node: Link!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum LinkOrderByInput {
+  id_ASC
+  id_DESC
+  link_ASC
+  link_DESC
+  name_ASC
+  name_DESC
+  score_ASC
+  score_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type LinkPreviousValues {
+  id: ID!
+  link: String!
+  name: String
+  score: Int!
+}
+
+type LinkSubscriptionPayload {
+  mutation: MutationType!
+  node: Link
+  updatedFields: [String!]
+  previousValues: LinkPreviousValues
+}
+
+input LinkSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LinkSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LinkSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LinkSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: LinkWhereInput
+}
+
+input LinkUpdateInput {
+  link: String
+  name: String
+  score: Int
+  bkmk: BookmarkUpdateOneRequiredWithoutLinkInput
+}
+
+input LinkUpdateManyMutationInput {
+  link: String
+  name: String
+  score: Int
+}
+
+input LinkUpdateOneWithoutBkmkInput {
+  create: LinkCreateWithoutBkmkInput
+  connect: LinkWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: LinkUpdateWithoutBkmkDataInput
+  upsert: LinkUpsertWithoutBkmkInput
+}
+
+input LinkUpdateWithoutBkmkDataInput {
+  link: String
+  name: String
+  score: Int
+}
+
+input LinkUpsertWithoutBkmkInput {
+  update: LinkUpdateWithoutBkmkDataInput!
+  create: LinkCreateWithoutBkmkInput!
+}
+
+input LinkWhereInput {
+  """Logical AND on all given filters."""
+  AND: [LinkWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [LinkWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [LinkWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  link: String
+
+  """All values that are not equal to given value."""
+  link_not: String
+
+  """All values that are contained in given list."""
+  link_in: [String!]
+
+  """All values that are not contained in given list."""
+  link_not_in: [String!]
+
+  """All values less than the given value."""
+  link_lt: String
+
+  """All values less than or equal the given value."""
+  link_lte: String
+
+  """All values greater than the given value."""
+  link_gt: String
+
+  """All values greater than or equal the given value."""
+  link_gte: String
+
+  """All values containing the given string."""
+  link_contains: String
+
+  """All values not containing the given string."""
+  link_not_contains: String
+
+  """All values starting with the given string."""
+  link_starts_with: String
+
+  """All values not starting with the given string."""
+  link_not_starts_with: String
+
+  """All values ending with the given string."""
+  link_ends_with: String
+
+  """All values not ending with the given string."""
+  link_not_ends_with: String
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  score: Int
+
+  """All values that are not equal to given value."""
+  score_not: Int
+
+  """All values that are contained in given list."""
+  score_in: [Int!]
+
+  """All values that are not contained in given list."""
+  score_not_in: [Int!]
+
+  """All values less than the given value."""
+  score_lt: Int
+
+  """All values less than or equal the given value."""
+  score_lte: Int
+
+  """All values greater than the given value."""
+  score_gt: Int
+
+  """All values greater than or equal the given value."""
+  score_gte: Int
+  bkmk: BookmarkWhereInput
+}
+
+input LinkWhereUniqueInput {
+  id: ID
+}
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createUser(data: UserCreateInput!): User!
+  createBookmark(data: BookmarkCreateInput!): Bookmark!
+  createLink(data: LinkCreateInput!): Link!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateBookmark(data: BookmarkUpdateInput!, where: BookmarkWhereUniqueInput!): Bookmark
+  updateLink(data: LinkUpdateInput!, where: LinkWhereUniqueInput!): Link
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteBookmark(where: BookmarkWhereUniqueInput!): Bookmark
+  deleteLink(where: LinkWhereUniqueInput!): Link
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertBookmark(where: BookmarkWhereUniqueInput!, create: BookmarkCreateInput!, update: BookmarkUpdateInput!): Bookmark!
+  upsertLink(where: LinkWhereUniqueInput!, create: LinkCreateInput!, update: LinkUpdateInput!): Link!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyLinks(data: LinkUpdateManyMutationInput!, where: LinkWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyBookmarks(where: BookmarkWhereInput): BatchPayload!
+  deleteManyLinks(where: LinkWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Query {
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  bookmarks(where: BookmarkWhereInput, orderBy: BookmarkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bookmark]!
+  links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link]!
+  user(where: UserWhereUniqueInput!): User
+  bookmark(where: BookmarkWhereUniqueInput!): Bookmark
+  link(where: LinkWhereUniqueInput!): Link
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  bookmarksConnection(where: BookmarkWhereInput, orderBy: BookmarkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BookmarkConnection!
+  linksConnection(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Subscription {
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  bookmark(where: BookmarkSubscriptionWhereInput): BookmarkSubscriptionPayload
+  link(where: LinkSubscriptionWhereInput): LinkSubscriptionPayload
+}
+
+type User implements Node {
+  id: ID!
+  name: String!
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  name: String!
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  name: String!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+}
+
+input UserUpdateInput {
+  name: String
+}
+
+input UserUpdateManyMutationInput {
+  name: String
+}
+
+input UserWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  name: String
+}

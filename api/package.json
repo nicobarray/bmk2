@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "local": "nodemon -e js,graphql src/index.js"
+  },
+  "devDependencies": {
+    "graphql-cli": "^2.16.3",
+    "nodemon": "1.18.7"
+  },
+  "dependencies": {
+    "graphql-yoga": "1.16.7",
+    "prisma": "1.21.1",
+    "prisma-binding": "2.2.8"
+  }
+}

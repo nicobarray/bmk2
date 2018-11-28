@@ -1,0 +1,17 @@
+type User {
+  id: ID! @unique
+  name: String! @unique
+}
+
+type Bookmark {
+  id: ID! @unique
+  link: Link @relation(name: "BookmarkAsLink")
+}
+
+type Link {
+  id: ID! @unique
+  bkmk: Bookmark! @relation(name: "BookmarkAsLink")
+  link: String!
+  name: String
+  score: Int! @default(value: 0)
+}

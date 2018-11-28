@@ -1,0 +1,5 @@
+# import * from './generated/prisma.graphql'
+
+type Query {
+  me(password: String!): User!
+}

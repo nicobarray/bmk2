@@ -1,0 +1,7 @@
+endpoint: https://eu1.prisma.sh/nicolas-barray/bmk2-prisma/dev
+datamodel: datamodel.prisma
+
+hooks:
+  post-deploy:
+    - echo "Deployment finished"
+    - graphql get-schema --project prisma
