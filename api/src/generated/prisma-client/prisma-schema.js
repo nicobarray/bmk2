@@ -1,4 +1,5 @@
-type AggregateBookmark {
+module.exports = {
+        typeDefs: /* GraphQL */ `type AggregateBookmark {
   count: Int!
 }
 
@@ -431,3 +432,6 @@ input UserWhereUniqueInput {
   id: ID
   name: String
 }
+`
+      }
+    

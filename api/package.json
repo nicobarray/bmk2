@@ -7,6 +7,7 @@
     "nodemon": "1.18.7"
   },
   "dependencies": {
+    "graphql-tag": "^2.10.0",
     "graphql-yoga": "1.16.7",
     "prisma": "1.21.1",
     "prisma-binding": "2.2.8"

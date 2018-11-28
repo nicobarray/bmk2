@@ -6,8 +6,13 @@ import { ApolloProvider } from 'react-apollo'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
+const config = {
+  default: 'http://localhost:4000/',
+  production: 'https://bmk2-api.yahwastaken.com'
+}
+
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/'
+  uri: config[process.env.NODE_ENV || 'default']
 })
 
 ReactDOM.render(
