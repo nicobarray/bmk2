@@ -2,11 +2,8 @@ import React, { useState } from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
-import styled from 'styled-components'
-
-const Layout = styled.div`
-  height: 100vh;
-`
+import Layout from './components/Layout'
+import Hello from './components/Hello'
 
 const userQuery = gql`
   query MeQuery($password: String!) {
@@ -30,7 +27,7 @@ function App() {
 
         return (
           <Layout>
-            <div>Hello {data.me.name || 'you'}</div>
+            <Hello name={data.me.name} />
             <div onClick={() => useFoo(foo + 1)}>{foo}</div>
           </Layout>
         )
