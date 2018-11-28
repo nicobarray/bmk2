@@ -11,7 +11,7 @@ type Bookmark {
 type Link {
   id: ID! @unique
   bkmk: Bookmark! @relation(name: "BookmarkAsLink")
-  link: String!
+  url: String!
   name: String
   score: Int! @default(value: 0)
 }

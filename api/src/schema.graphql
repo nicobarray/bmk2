@@ -1,5 +1,10 @@
 # import * from './generated/prisma.graphql'
 
+input TokenInput {
+  token: String
+}
+
 type Query {
-  me(password: String!): User!
+  me(data: TokenInput!): User!
+  bookmarks(data: TokenInput!): [Bookmark!]!
 }

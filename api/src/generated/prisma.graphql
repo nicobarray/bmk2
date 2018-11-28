@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/nicolas-barray/bmk2-prisma/dev
-# timestamp: Wed Nov 28 2018 01:11:50 GMT+0100 (CET)
+# timestamp: Wed Nov 28 2018 02:30:24 GMT+0100 (CET)
 
 type AggregateBookmark {
   count: Int!
@@ -169,7 +169,7 @@ input BookmarkWhereUniqueInput {
 type Link implements Node {
   id: ID!
   bkmk: Bookmark!
-  link: String!
+  url: String!
   name: String
   score: Int!
 }
@@ -185,7 +185,7 @@ type LinkConnection {
 }
 
 input LinkCreateInput {
-  link: String!
+  url: String!
   name: String
   score: Int
   bkmk: BookmarkCreateOneWithoutLinkInput!
@@ -197,7 +197,7 @@ input LinkCreateOneWithoutBkmkInput {
 }
 
 input LinkCreateWithoutBkmkInput {
-  link: String!
+  url: String!
   name: String
   score: Int
 }
@@ -214,8 +214,8 @@ type LinkEdge {
 enum LinkOrderByInput {
   id_ASC
   id_DESC
-  link_ASC
-  link_DESC
+  url_ASC
+  url_DESC
   name_ASC
   name_DESC
   score_ASC
@@ -228,7 +228,7 @@ enum LinkOrderByInput {
 
 type LinkPreviousValues {
   id: ID!
-  link: String!
+  url: String!
   name: String
   score: Int!
 }
@@ -273,14 +273,14 @@ input LinkSubscriptionWhereInput {
 }
 
 input LinkUpdateInput {
-  link: String
+  url: String
   name: String
   score: Int
   bkmk: BookmarkUpdateOneRequiredWithoutLinkInput
 }
 
 input LinkUpdateManyMutationInput {
-  link: String
+  url: String
   name: String
   score: Int
 }
@@ -295,7 +295,7 @@ input LinkUpdateOneWithoutBkmkInput {
 }
 
 input LinkUpdateWithoutBkmkDataInput {
-  link: String
+  url: String
   name: String
   score: Int
 }
@@ -354,46 +354,46 @@ input LinkWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  link: String
+  url: String
 
   """All values that are not equal to given value."""
-  link_not: String
+  url_not: String
 
   """All values that are contained in given list."""
-  link_in: [String!]
+  url_in: [String!]
 
   """All values that are not contained in given list."""
-  link_not_in: [String!]
+  url_not_in: [String!]
 
   """All values less than the given value."""
-  link_lt: String
+  url_lt: String
 
   """All values less than or equal the given value."""
-  link_lte: String
+  url_lte: String
 
   """All values greater than the given value."""
-  link_gt: String
+  url_gt: String
 
   """All values greater than or equal the given value."""
-  link_gte: String
+  url_gte: String
 
   """All values containing the given string."""
-  link_contains: String
+  url_contains: String
 
   """All values not containing the given string."""
-  link_not_contains: String
+  url_not_contains: String
 
   """All values starting with the given string."""
-  link_starts_with: String
+  url_starts_with: String
 
   """All values not starting with the given string."""
-  link_not_starts_with: String
+  url_not_starts_with: String
 
   """All values ending with the given string."""
-  link_ends_with: String
+  url_ends_with: String
 
   """All values not ending with the given string."""
-  link_not_ends_with: String
+  url_not_ends_with: String
   name: String
 
   """All values that are not equal to given value."""

@@ -45,6 +45,10 @@ const Background = styled.img`
         `};
 `
 
+const Center = styled.div`
+  padding: 8px;
+`
+
 export default function(props) {
   const { innerWidth, innerHeight } = useWindowSize()
   const [hasLoad, setHasLoad] = useState(false)
@@ -70,7 +74,7 @@ export default function(props) {
           setHasLoad(true)
         }}
       />
-      {props.children}
+      <Center> {props.children}</Center>
     </Layout>
   )
 }

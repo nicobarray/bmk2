@@ -4,7 +4,8 @@ const { Prisma } = require("prisma-binding");
 const resolvers = {
   Query: {
     me: (root, args, ctx, info) =>
-      ctx.db.query.user({ where: { name: "yahwastaken" } }, info)
+      ctx.db.query.user({ where: { name: "yahwastaken" } }, info),
+    bookmarks: (root, args, ctx, info) => ctx.db.query.bookmarks({}, info)
   },
   Node: {
     __resolveType(obj, _context, _info) {
