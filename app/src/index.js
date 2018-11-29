@@ -7,9 +7,11 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 
 const config = {
-  default: 'http://localhost:4000/',
+  development: 'http://localhost:4000/',
   production: 'https://bmk2-api.yahwastaken.com'
 }
+
+console.log('Start Apollo Client on ', config[process.env.NODE_ENV])
 
 const client = new ApolloClient({
   uri: config[process.env.NODE_ENV || 'default']
