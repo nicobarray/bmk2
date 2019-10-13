@@ -8,3 +8,7 @@ type Query {
   me(data: TokenInput!): User!
   bookmarks(data: TokenInput!): [Bookmark!]!
 }
+
+type Mutation {
+  newLink(url: String!, name: String): Bookmark!
+}

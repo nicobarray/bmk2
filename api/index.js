@@ -20,6 +20,20 @@ const resolvers = {
       ctx.db.user({ where: { name: "yahwastaken" } }, info),
     bookmarks: (root, args, ctx, info) => ctx.db.bookmarks().$fragment(fragment)
   },
+  Mutation: {
+    newLink: (root, { url, name }, ctx, info) =>
+      ctx.db.createBookmark(
+        {
+          link: {
+            create: {
+              url,
+              name: name || url
+            }
+          }
+        },
+        info
+      )
+  },
   Node: {
     __resolveType(obj, _context, _info) {
       return obj.__typename;
@@ -54,6 +68,10 @@ const server = new GraphQLServer({
     type Query {
       me(data: TokenInput!): User!
       bookmarks(data: TokenInput!): [Bookmark!]!
+    }
+
+    type Mutation {
+      newLink(url: String!, name: String): Bookmark!
     }
 
     interface Node {

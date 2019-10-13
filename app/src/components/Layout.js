@@ -45,7 +45,7 @@ const Background = styled.img`
         `};
 `
 
-const Center = styled.div`
+const Content = styled.div`
   padding: 8px;
 `
 
@@ -74,7 +74,7 @@ export default function(props) {
           setHasLoad(true)
         }}
       />
-      <Center> {props.children}</Center>
+      <Content>{props.children}</Content>
     </Layout>
   )
 }
